@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane style="-fx-background-color: linear-gradient(to bottom, #1e3c72, #2a5298); -fx-font-family: 'Segoe UI', 'Arial', sans-serif;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.redsismica.cerrarorden.boundary.PantallaCierreOrdenInspeccion">
+
+    <!-- Panel Lateral -->
+    <left>
+        <VBox prefWidth="350" spacing="10" style="-fx-background-color: rgba(30, 60, 114, 0.95); -fx-padding: 20; -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 0 1 0 0;">
+
+            <!-- Header del Panel -->
+            <VBox spacing="15" style="-fx-alignment: center;">
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-alignment: center;" text="SISTEMA SÍSMICO" textFill="white" />
+                <Separator style="-fx-background-color: rgba(255,255,255,0.3);" />
+            </VBox>
+
+            <!-- Menú de Navegación -->
+            <VBox alignment="CENTER" spacing="8" style="-fx-padding: 20 0 0 0;">
+                <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;" text="NAVEGACIÓN" textFill="#B0C4DE" />
+
+                <Button fx:id="btnCerrarInspeccion" onAction="#opcDarCierreOrdenInspeccion" prefHeight="45" prefWidth="240" style="-fx-background-color: linear-gradient(to bottom, #4CAF50, #45a049);                            -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;                            -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: rgba(255,255,255,0.2);                            -fx-border-width: 1; -fx-border-radius: 8;" text="🔍 Cerrar Orden de Inspección" />
+
+                <Button prefHeight="40" prefWidth="240" style="-fx-background-color: transparent; -fx-text-fill: #B0C4DE;                            -fx-font-size: 13px; -fx-background-radius: 6; -fx-cursor: hand;                            -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 1; -fx-border-radius: 6;" text="📊 Dashboard" />
+
+                <Button prefHeight="40" prefWidth="240" style="-fx-background-color: transparent; -fx-text-fill: #B0C4DE;                            -fx-font-size: 13px; -fx-background-radius: 6; -fx-cursor: hand;                            -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 1; -fx-border-radius: 6;" text="⚙️ Configuración" />
+            </VBox>
+
+            <!-- Información del Usuario -->
+            <VBox spacing="10" style="-fx-padding: 30 0 0 0;">
+                <Separator style="-fx-background-color: rgba(255,255,255,0.3);" />
+                <Label style="-fx-font-size: 11px; -fx-font-weight: bold;" text="USUARIO ACTIVO" textFill="#B0C4DE" />
+                <HBox spacing="10" style="-fx-alignment: center-left;">
+                    <Label style="-fx-font-size: 16px;" text="👤" />
+                    <Label fx:id="lblUsuario" style="-fx-font-size: 13px; -fx-font-weight: bold;" text="" textFill="white" />
+                </HBox>
+                <Separator style="-fx-background-color: rgba(255,255,255,0.3);" />
+            </VBox>
+
+            <!-- Sección 4: Confirmación -->
+            <VBox fx:id="seccionConfirmacion" spacing="20" style="-fx-background-color: rgba(255, 255, 255, 0.65); -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2); -fx-opacity: 1.0;" visible="false">
+                <HBox alignment="CENTER" spacing="10">
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: rgba(30, 60, 114, 0.95);" text="CIERRE DE ORDEN" />
+                </HBox>
+
+                <VBox fx:id="resumenCierre" alignment="CENTER" spacing="10" style="-fx-background-color: rgba(255, 255, 255, 0.55); -fx-padding: 20; -fx-background-radius: 8; -fx-border-color: rgba(30, 60, 114, 0.95); -fx-border-width: 1; -fx-border-radius: 8;">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: rgba(30, 60, 114, 0.95);" text="📄 RESUMEN DE CIERRE" />
+                    <Label fx:id="lblResumenOrden" style="-fx-font-size: 13px; -fx-text-fill: rgba(30, 60, 114, 0.95);" />
+                    <Label fx:id="lblResumenObservacion" style="-fx-font-size: 13px; -fx-text-fill: rgba(30, 60, 114, 0.95);" />
+                    <Label fx:id="lblResumenMotivos" style="-fx-font-size: 13px; -fx-text-fill: rgba(30, 60, 114, 0.95);" />
+                </VBox>
+            <VBox.margin>
+               <Insets left="10.0" right="10.0" top="5.0" />
+            </VBox.margin>
+            </VBox>
+         <VBox spacing="15" style="-fx-alignment: center;">
+             <Separator style="-fx-background-color: rgba(255,255,255,0.3);" />
+             <Button fx:id="btnSalir" onAction="#salir" prefHeight="45" prefWidth="240" text="🚪 SALIR" style="-fx-background-color: linear-gradient(to bottom, #f44336, #d32f2f);                            -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;                            -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: rgba(255,255,255,0.2);                            -fx-border-width: 1; -fx-border-radius: 8;" />
+         </VBox>
+        </VBox>
+    </left>
+
+    <!-- Contenido Principal -->
+    <center>
+        <StackPane>
+            <!-- Panel de Bienvenida -->
+            <VBox fx:id="panelBienvenida" spacing="30" style="-fx-alignment: center; -fx-padding: 50;">
+                <Label style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-alignment: center;" text="🌍 SISTEMA DE RED SÍSMICA" textFill="white" />
+                <Label style="-fx-font-size: 18px; -fx-text-alignment: center; -fx-opacity: 0.8;" text="Seleccione 'Cerrar Orden de Inspección' para comenzar" textFill="#E0E6ED" />
+            </VBox>
+
+            <!-- Panel Principal de Inspección -->
+            <ScrollPane fx:id="scrollInspeccion" fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;" visible="false">
+                <VBox spacing="25" style="-fx-padding: 30;">
+
+                    <!-- Header -->
+                    <HBox spacing="15" style="-fx-alignment: center-left; -fx-padding: 0 0 20 0;">
+                        <Label style="-fx-font-size: 28px;" text="🔍" />
+                        <Label style="-fx-font-size: 28px; -fx-font-weight: bold;" text="CERRAR ORDEN DE INSPECCIÓN" textFill="white" />
+                    </HBox>
+
+                    <!-- Sección 1: Órdenes de Inspección -->
+                    <VBox spacing="15" style="-fx-background-color: rgba(255, 255, 255, 0.95); -fx-background-radius: 12;                             -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);">
+
+                        <HBox spacing="10" style="-fx-alignment: center-left;">
+                            <Label style="-fx-font-size: 20px; -fx-text-fill: #1e3c72" text="📋" />
+                            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="ÓRDENES DE INSPECCIÓN COMPLETADAS" />
+                        </HBox>
+
+                        <HBox fx:id="labelSeleccionOrden" visible="false" managed="false" spacing="10" style="-fx-alignment: center-left;">
+                            <Label style="-fx-font-size: 12px; -fx-text-fill: #1e3c72" text="Debe seleccionar una orden de inspeccion de la tabla:" />
+                        </HBox>
+
+                        <TableView fx:id="tablaOrdenes" prefHeight="200" style="-fx-background-color: white; -fx-background-radius: 8;">
+                            <columns>
+                                <TableColumn fx:id="colNumOrden"  text="N° Orden" style="-fx-alignment: CENTER;" sortable="false"/>
+                                <TableColumn fx:id="colFechaFinalizacion" text="Fecha Finalización" style="-fx-alignment: CENTER;" sortable="false"/>
+                                <TableColumn fx:id="colEstacion" text="Estación Sismológica" style="-fx-alignment: CENTER;" sortable="false"/>
+                                <TableColumn fx:id="colSismografo" text="ID Sismógrafo" style="-fx-alignment: CENTER;" sortable="false"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+
+                    <!-- Sección 2: Observación de Cierre -->
+                    <VBox fx:id="seccionObservacion" disable="true" spacing="15" style="-fx-background-color: rgba(255, 255, 255, 0.95); -fx-background-radius: 12;                             -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);                             -fx-opacity: 0.6;">
+
+                        <HBox spacing="10" style="-fx-alignment: center-left;">
+                            <Label style="-fx-font-size: 20px;" text="📝" />
+                            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="OBSERVACIÓN DE CIERRE" />
+                        </HBox>
+
+                        <VBox spacing="10">
+                            <Label style="-fx-font-size: 14px; -fx-text-fill: #34495e;" text="Ingrese la observación para el cierre de la orden:" />
+                            <TextArea fx:id="txtObservacion" prefRowCount="4" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6;                                       -fx-border-radius: 6; -fx-background-radius: 6;                                       -fx-font-size: 13px; -fx-padding: 10;" wrapText="true" />
+                        </VBox>
+
+                    </VBox>
+
+                    <!-- Sección 3: Motivos Fuera de Servicio -->
+                    <VBox fx:id="seccionMotivos" disable="true" spacing="15" style="-fx-background-color: rgba(255, 255, 255, 0.95); -fx-background-radius: 12;                             -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);                             -fx-opacity: 0.6;">
+
+                        <HBox spacing="10" style="-fx-alignment: center-left;">
+                            <Label style="-fx-font-size: 20px;" text="⚙️" />
+                            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="ESTADO DEL SISMÓGRAFO" />
+                        </HBox>
+
+                        <!-- Información del Sismógrafo -->
+                        <VBox spacing="10" style="-fx-background-color: #e3f2fd; -fx-padding: 15; -fx-background-radius: 8;">
+                            <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1565c0;" text="🔍 SISMÓGRAFO SELECCIONADO" />
+                            <Label fx:id="lblIdSismografo" style="-fx-font-size: 13px; -fx-text-fill: #1565c0;" text="ID: SISMO-LA-001" />
+                        </VBox>
+
+                        <!-- Selección de Estado -->
+                        <VBox spacing="10">
+                            <Label style="-fx-font-size: 14px; -fx-text-fill: #34495e; -fx-font-weight: bold;" text="Habilitado par establecer como fuera de servicio:" />
+
+                            <HBox spacing="20" style="-fx-alignment: center-left;">
+                                <RadioButton fx:id="rbOnline" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #27ae60;" text="ON-LINE" />
+                                <RadioButton fx:id="rbFueraServicio" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;" text="FUERA DE SERVICIO" />
+                            </HBox>
+                        </VBox>
+
+                        <VBox fx:id="vboxMotivosFuera" managed="false" spacing="10" visible="false">
+                            <Label style="-fx-font-size: 14px; -fx-text-fill: #34495e;" text="Seleccione uno o varios motivos para poner el sismógrafo fuera de servicio:" />
+                        </VBox>
+                    </VBox>
+
+                    <HBox spacing="15" style="-fx-alignment: center;">
+                        <Button fx:id="btnCancelar" onAction="#cancelarProceso" style="-fx-background-color: linear-gradient(to bottom, #dc3545, #c82333);                                     -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;                                     -fx-background-radius: 8; -fx-padding: 12 20; -fx-cursor: hand;" text="❌ Cancelar" />
+
+                        <Button fx:id="btnConfirmarCierre" onAction="#solicitarConfirmacionCierreOrden" style="-fx-background-color: linear-gradient(to bottom, #28a745, #218838);                                     -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;                                     -fx-background-radius: 8; -fx-padding: 12 20; -fx-cursor: hand;" text="✅ CONFIRMAR CIERRE DE ORDEN" />
+                    </HBox>
+
+                    <!-- Espaciado final -->
+                    <VBox prefHeight="30" />
+                </VBox>
+            </ScrollPane>
+        </StackPane>
+    </center>
+
+    <!-- Barra de Estado -->
+    <bottom>
+        <HBox spacing="20" style="-fx-alignment: center-left; -fx-padding: 15 25;                                  -fx-background-color: rgba(30, 60, 114, 0.9);                                  -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 1 0 0 0;">
+            <Label style="-fx-font-size: 14px;" text="🌐" />
+            <Label fx:id="lblSistema" style="-fx-font-size: 12px;" text="Sistema conectado - Listo para procesar órdenes" textFill="white" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblFechaHora" style="-fx-font-size: 11px;" text="28/05/2025 - 14:30:25" textFill="#B0C4DE" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,21 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Maven
+target/
+.mvn/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Base de datos local
+*.sqlite
+
+# Archivos temporales / de entorno
+*.log
+*.class
+
+# Scripts de compilación locales (opcional)
+build_optimized.bat
