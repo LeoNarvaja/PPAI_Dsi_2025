@@ -28,30 +28,17 @@ public class Estado {
     public Estado() {
     }
 
-    public String getAmbito() {
-        return ambito;
-    }
-
-    public void setAmbito(String ambito) {
-        this.ambito = ambito;
+    public boolean esCompletamenteRealizada() {
+        return nombreEstado.equals("Completamente realizada");
     }
 
     public String getNombreEstado() {
         return nombreEstado;
     }
 
-    public void setNombreEstado(String nombreEstado) {
-        this.nombreEstado = nombreEstado;
-    }
-
-    public boolean esCompletamenteRealizada() {
-        return nombreEstado.equals("Completamente realizada");
-    }
-
     public boolean esAmbitoOrdenInspeccion() {
         return this.ambito.equals("Orden de inspeccion");
     }
-
 
     public boolean esCerrada() {
         return this.nombreEstado.equals("Cerrada");
@@ -64,14 +51,5 @@ public class Estado {
     public boolean esFueraServicio() {
         return nombreEstado.equals("Fuera de servicio");
     }
-
-    @Override
-    public String toString() {
-        return "Estado{" +
-                "ambito='" + ambito + '\'' +
-                ", nombreEstado='" + nombreEstado + '\'' +
-                '}';
-    }
-
 
 }

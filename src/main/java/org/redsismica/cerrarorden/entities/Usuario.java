@@ -24,19 +24,12 @@ public class Usuario {
         this.empleado = empleado;
     }
 
-    public Empleado getEmpleado() {
+    public Empleado obtenerEmpleado() {
         return empleado;
     }
 
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "empleado=" + empleado +
-                '}';
     }
 
 }

@@ -76,28 +76,10 @@ public class OrdenInspeccion {
         return this.estacionSismologica.getNombre();
     }
 
-    public int buscarCodigoEstacion() {
-        return this.estacionSismologica.getCodigoEstacion();
-    }
-
     public void cerrar(LocalDateTime fechaHoraCierre, Estado estado, String observacionCierre) {
         this.setFechaHoraCierre(fechaHoraCierre);
         this.setEstado(estado);
         this.setObservacionCierre(observacionCierre);
-    }
-
-    @Override
-    public String toString() {
-        return "OrdenInspeccion{" +
-                "numeroOrden=" + numeroOrden +
-                ", fechHoraCierre=" + fechaHoraCierre +
-                ", fechHoraFinalizacion=" + fechaHoraFinalizacion +
-                ", fechaHoraInicio=" + fechaHoraInicio +
-                ", estacionSismologica=" + estacionSismologica +
-                ", estado=" + estado +
-                ", observacionCierre='" + observacionCierre + '\'' +
-                ", empleado=" + empleado +
-                '}';
     }
 
 }

@@ -31,24 +31,12 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(String email) {
-        this.email = email;
+    public boolean esResponsableDeReparacion() {
+        return Objects.equals(this.rol.getNombreRol(), "Responsable de reparacion");
     }
 
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
     }
 
     @Override
@@ -61,17 +49,6 @@ public class Empleado {
     @Override
     public int hashCode() {
         return Objects.hashCode(email);
-    }
-
-    public boolean esResponsableDeReparacion() {
-        return Objects.equals(this.rol.getNombreRol(), "Responsable de reparacion");
-    }
-
-    @Override
-    public String toString() {
-        return "Empleado{" +
-                "email='" + email + '\'' +
-                '}';
     }
 
 }

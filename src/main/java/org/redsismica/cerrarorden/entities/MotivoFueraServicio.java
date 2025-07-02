@@ -14,11 +14,12 @@ public class MotivoFueraServicio {
     @JoinColumn(name = "id_motivo_tipo", referencedColumnName = "id")
     private MotivoTipo motivoTipo;
 
+    private String comentario;
+
+
     @ManyToOne
     @JoinColumn(name = "id_cambio_estado", referencedColumnName = "id")
     private CambioEstado cambioEstado;
-
-    private String comentario;
 
     public MotivoFueraServicio() {
     }

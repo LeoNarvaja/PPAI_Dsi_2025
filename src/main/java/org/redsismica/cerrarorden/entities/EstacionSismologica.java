@@ -23,10 +23,6 @@ public class EstacionSismologica {
 
     public EstacionSismologica() {}
 
-    public int getCodigoEstacion() {
-        return codigoEstacion;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -41,14 +37,6 @@ public class EstacionSismologica {
     @Override
     public int hashCode() {
         return Objects.hashCode(codigoEstacion);
-    }
-
-    @Override
-    public String toString() {
-        return "EstacionSismologica{" +
-                "codigoEstacion=" + codigoEstacion +
-                ", nombre='" + nombre + '\'' +
-                '}';
     }
 
 }

@@ -42,15 +42,14 @@ public class Sismografo {
         return this.estacionSismologica.equals(estacionSismologica);
     }
 
-    public void actualizarAFueraServicio(
-            LocalDateTime fechaHoraActual,
-            Empleado empleado,
-            Estado estado,
-            Map<MotivoTipo, String> comentarioMotivoFueraServicio) {
+    public void actualizarAFueraServicio(LocalDateTime fechaHoraActual, Empleado empleado, Estado estado, Map<MotivoTipo, String> comentarioMotivoFueraServicio) {
         this.setEstadoActual(estado);
+        // Debo obtener el cambio de estado actual desde el sismografo, que conoce sus estados
         CambioEstado cambioEstadoActual = this.buscarEstadoActual();
+        // Establezco la fecha hora de fin del estado actual
         cambioEstadoActual.setFechaHoraFin(fechaHoraActual);
-        crearCambioEstado(
+        // Crea un nuevo cambio de estado
+        this.crearCambioEstado(
                 fechaHoraActual,
                 empleado,
                 estado,
@@ -66,26 +65,14 @@ public class Sismografo {
         return null;
     }
 
-    public void crearCambioEstado(
-            LocalDateTime fechaHoraActual
-            ,Empleado empleado,
-            Estado estado,
-            Map<MotivoTipo, String> comentarioMotivoFueraServicio) {
+    public void crearCambioEstado(LocalDateTime fechaHoraActual,Empleado empleado, Estado estado, Map<MotivoTipo, String> comentarioMotivoFueraServicio) {
+        // Llama al constructor de la clase cambio de estado con los parametros correspondientes
         CambioEstado nuevoCambioEstado = new CambioEstado(fechaHoraActual, empleado, estado);
         nuevoCambioEstado.setSismografo(this);
         this.cambiosEstado.add(nuevoCambioEstado);
+        // El cambio de estado es reponsable de crear los motivos por los que se pone fuera de servicio el sismografo con sus comentarios
         nuevoCambioEstado.crearMotivoFueraServicio(comentarioMotivoFueraServicio);
     }
-
-    @Override
-    public String toString() {
-        return "Sismografo{" +
-                "identificadorSismografo=" + identificadorSismografo +
-                ", estacionSismologica=" + estacionSismologica +
-                ", cambiosEstado=" + cambiosEstado +
-                '}';
-    }
-
 
 }
 

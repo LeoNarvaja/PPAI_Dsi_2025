@@ -15,6 +15,10 @@ public class CambioEstado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ManyToOne
+    @JoinColumn(name = "id_estado")
+    private Estado estado;
+
     private LocalDateTime fechaHoraInicio;
 
     private LocalDateTime fechaHoraFin;
@@ -25,10 +29,6 @@ public class CambioEstado {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_empleado")
     private Empleado empleado;
-
-    @ManyToOne
-    @JoinColumn(name = "id_estado")
-    private Estado estado;
 
     @ManyToOne
     @JoinColumn(name = "id_sismografo", referencedColumnName = "identificadorSismografo")
@@ -43,29 +43,10 @@ public class CambioEstado {
         this.estado = estado;
     }
 
-    public LocalDateTime getFechaHoraInicio() {
-        return fechaHoraInicio;
-    }
-
-    public void setFechaHoraInicio(LocalDateTime fechaHoraInicio) {
-        this.fechaHoraInicio = fechaHoraInicio;
-    }
-
-    public LocalDateTime getFechaHoraFin() {
-        return fechaHoraFin;
-    }
-
     public void setFechaHoraFin(LocalDateTime fechaHoraFin) {
         this.fechaHoraFin = fechaHoraFin;
     }
 
-    public List<MotivoFueraServicio> getMotivoFueraServicio() {
-        return motivosFueraServicio;
-    }
-
-    public void setMotivoFueraServicio(List<MotivoFueraServicio> motivoFueraServicio) {
-        this.motivosFueraServicio = motivoFueraServicio;
-    }
 
     public Empleado getEmpleado() {
         return empleado;
@@ -73,18 +54,6 @@ public class CambioEstado {
 
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
-    }
-
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
-    public Sismografo getSismografo() {
-        return sismografo;
     }
 
     public void setSismografo(Sismografo sismografo) {
@@ -102,21 +71,11 @@ public class CambioEstado {
         for (Map.Entry<MotivoTipo, String> entry : comentarioMotivoFueraServicio.entrySet()) {
             MotivoTipo motivoTipo = entry.getKey();
             String comentario = entry.getValue();
+            // llama al constructor de la clase motivo fuera de servicio con los parametros correspondientes
+            // Se crea un nuevo motivo
             MotivoFueraServicio motivoFueraServicio = new MotivoFueraServicio(motivoTipo, comentario);
             motivoFueraServicio.setCambioEstado(this);
             this.motivosFueraServicio.add(motivoFueraServicio);
         }
     }
-
-    @Override
-    public String toString() {
-        return "CambioEstado{" +
-                " fechaHoraInicio=" + fechaHoraInicio +
-                ", fechaHoraFin=" + fechaHoraFin +
-                ", motivoFueraServicio=" + motivosFueraServicio +
-                ", empleado=" + empleado +
-                ", estado=" + estado +
-                '}';
-    }
-
 }
